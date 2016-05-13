@@ -45,7 +45,8 @@ public class StringPractice3Activity extends ActionBarActivity implements TextWa
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         TextView countView = (TextView) findViewById(R.id.TextCounter);
         // TODO: フォーマット用の String リソース（text_counter）を取り出し、setText(CharSequence) の引数に渡す
-        countView.setText(null);
+        String formatted = getString(R.string.text_counter, s.length(), TEXT_MAX_LENGTH);
+        countView.setText(formatted);
     }
 
     // Show Toast ボタンが押された
@@ -54,6 +55,6 @@ public class StringPractice3Activity extends ActionBarActivity implements TextWa
         String name = nameInput.getText().toString();
         mClickCount++;
         // TODO: フォーマット用の String リソース（toast_message）を取り出し、makeText(Context, CharSequence, int) の第 2 引数に渡す
-        Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.toast_message, name, mClickCount), Toast.LENGTH_LONG).show();
     }
 }

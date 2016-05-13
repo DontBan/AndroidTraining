@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="逆さま"
+        android:id="@+id/textView"
+        android:textSize="16sp" />
+    <fragment
+        android:id="@+id/ButtonFragment2"
+        android:name="jp.mixi.assignment.controller.adv.ButtonFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        tools:layout="@layout/fragment_button"/>
+    <fragment
+        android:id="@+id/BodyFragment2"
+        android:name="jp.mixi.assignment.controller.adv.BodyFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ButtonFragment2"
+        tools:layout="@layout/fragment_body"
+        />
+    <fragment
+        android:id="@+id/TitleFragment2"
+        android:name="jp.mixi.assignment.controller.adv.TitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BodyFragment2"
+        tools:layout="@layout/fragment_title"/>
+</RelativeLayout>

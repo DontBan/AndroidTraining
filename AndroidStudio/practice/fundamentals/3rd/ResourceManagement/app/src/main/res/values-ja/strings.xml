@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_world">こんにちは世界</string>
+    <string name="hoge">ほげ</string>
+    <string name="jog">ジョグ</string>
+    <string name="fight">戦う</string>
+    <string name="run_away">逃げる</string>
+</resources>

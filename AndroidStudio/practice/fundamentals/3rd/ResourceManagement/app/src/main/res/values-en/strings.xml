@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_world">Hello World!</string>
+    <string name="hoge">hoge</string>
+    <string name="jog">jog</string>
+    <string name="fight">fight</string>
+    <string name="run_away">RunAway</string>
+</resources>
