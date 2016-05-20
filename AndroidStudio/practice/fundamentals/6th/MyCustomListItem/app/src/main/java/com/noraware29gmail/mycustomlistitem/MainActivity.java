@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Activity mActivity = null;
+    private ListView mListView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +28,23 @@ public class MainActivity extends AppCompatActivity {
             list.add("hoge" + i);
         }
 
-        ListView listView = (ListView) findViewById(R.id.ListView);
+        mListView = (ListView) findViewById(R.id.ListView);
         CustomListItemAdapter adapter = new CustomListItemAdapter(mActivity, list);
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new OnItemClickListener() {
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String str = (String) parent.getItemAtPosition(position);
                 Toast.makeText(mActivity, str, Toast.LENGTH_SHORT).show();
+            }
+        });
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ListViewをスクロールさせる
+                mListView.smoothScrollToPosition(0);
             }
         });
     }

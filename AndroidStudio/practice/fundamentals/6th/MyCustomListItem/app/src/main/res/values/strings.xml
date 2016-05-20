@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyCustomListItem</string>
+    <string name="scroll_to_top">Scroll To Top</string>
 </resources>
