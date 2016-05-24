@@ -34,15 +34,12 @@ public class MainActivity extends Activity {
             list.add(new Book("タイトル" + i, "出版社" + i, i * 10));
         }
 
-        // TODO:BookArrayAdapterを作成して下さい。
         // (リストアイテムのレイアウトは用意されているlist_item_book.xmlをしてください。)
         BookArrayAdapter bookArrayAdapter = new BookArrayAdapter(mActivity,
                 list);
         mListView = (ListView) findViewById(R.id.BookList);
 
-        // TODO:ListViewにBookArrayAdapterをセットしてください。
         mListView.setAdapter(bookArrayAdapter);
-        // TODO:ListViewをタップしたとき、BookActivityに遷移するようにしてください。遷移するときにBookクラスのtitleを渡してください。
         // (BookActivityは用意されているものを使用してください)
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,14 +89,14 @@ public class MainActivity extends Activity {
         // ListViewから長押しされたリストアイテムを取得します
         Book book = (Book) mListView.getItemAtPosition(position);
         // ListViewからセットされているAdapterを取得します
-        // BookArrayAdapter adapter = (BookArrayAdapter) mListView.getAdapter();
+        BookArrayAdapter adapter = (BookArrayAdapter) mListView.getAdapter();
 
         if (item.getItemId() == R.id.DeleteListItem) {
-            // TODO:Adapterを使用して長押ししたデータを削除してください
+            adapter.remove(book);
         } else if (item.getItemId() == R.id.AddListItem) {
-            // TODO:Adapterを使用して長押ししたデータを追加してください
+            adapter.add(book);
         }
-        // TODO:Adapterを使用して表示されているデータを更新してください
+        adapter.notifyDataSetChanged();
         
         return true;
     }

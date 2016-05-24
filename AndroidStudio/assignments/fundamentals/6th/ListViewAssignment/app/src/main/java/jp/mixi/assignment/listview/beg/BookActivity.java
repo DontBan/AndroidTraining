@@ -19,7 +19,6 @@ public class BookActivity extends Activity {
 
         setContentView(R.layout.activity_book);
 
-        // TODO:MainActiviyから送られてきたtitleを表示してください。
         Intent received = getIntent();
         String title = received.getStringExtra(BOOK_TITLE);
         TextView titleTextView = (TextView) findViewById(R.id.BookTitle);
