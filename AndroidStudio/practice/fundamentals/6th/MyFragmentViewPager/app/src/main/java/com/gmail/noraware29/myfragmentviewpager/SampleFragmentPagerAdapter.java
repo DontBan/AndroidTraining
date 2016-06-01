@@ -11,7 +11,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     @SuppressWarnings("unused")
     private static final String TAG = SampleFragmentPagerAdapter.class.getSimpleName();
 
-    private static final int PAGE_COUNT = 5;
+    private static final int PAGE_COUNT = 3;
 
     public SampleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
