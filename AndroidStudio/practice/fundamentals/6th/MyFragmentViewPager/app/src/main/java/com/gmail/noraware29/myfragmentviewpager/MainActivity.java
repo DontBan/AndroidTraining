@@ -33,6 +33,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         SampleFragmentPagerAdapter sampleFragmentPagerAdapter = new SampleFragmentPagerAdapter(fm);
         mViewPager.setAdapter(sampleFragmentPagerAdapter);
 //        pager.setAdapter(sampleFragmentPagerAdapter);
+
+        /* ページが変わったらタブも買える */
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                getSupportActionBar().setSelectedNavigationItem(position);
+            }
+        });
     }
 
     @Override
