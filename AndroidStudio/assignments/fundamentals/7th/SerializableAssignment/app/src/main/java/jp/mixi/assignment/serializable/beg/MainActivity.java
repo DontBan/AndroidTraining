@@ -1,21 +1,31 @@
 package jp.mixi.assignment.serializable.beg;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
+    private Activity mActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mActivity = this;
+
         NetworkClient client = new NetworkClient();
         String user = client.getUser(123);
         String friends = client.getFriends();
@@ -27,7 +37,39 @@ public class MainActivity extends Activity {
         User userData = parseJSONString(user);
 
         // ListViewで友人たちを表示
-        // 選んだ友人の詳細を別アクティビティで表示
+        JSONArray array = null;
+        try {
+            array = new JSONArray(friends);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        int count = array.length();
+        final User[] friendsData = new User[count];
+        for (int i = 0; i < count; i++) {
+            try {
+                friendsData[i] = parseJSONString(array.getString(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        // 友人たちの名前の一覧を表示する
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < count; i++) {
+            list.add(friendsData[i].getName());
+        }
+        ListView listView = (ListView) findViewById(R.id.ListView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mActivity,
+                android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // 選んだ友人の詳細を別アクティビティで表示
+                Intent intent = new Intent(mActivity, DetailActivity.class);
+                intent.putExtra("FriendData", friendsData[i]);
+                startActivity(intent);
+            }
+        });
     }
 
     private User parseJSONString(String s) {
