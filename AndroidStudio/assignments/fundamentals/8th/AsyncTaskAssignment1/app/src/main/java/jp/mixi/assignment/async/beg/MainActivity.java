@@ -1,14 +1,19 @@
 package jp.mixi.assignment.async.beg;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
 import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements
+        LoaderCallbacks<PreferencesEntity> {
 
     public static final String SAVE_DATA = "savedata";
+    LoaderManager mManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,37 @@ public class MainActivity extends Activity {
                 startService(intent);
             }
         });
+
+        mManager = getSupportLoaderManager();
+
         View load = findViewById(R.id.LoadButton);
+        load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // AsyncTaskLoaderで読み出す
+                Bundle argsForLoader = new Bundle();
+                mManager.initLoader(0, argsForLoader, MainActivity.this);
+            }
+        });
+    }
+
+    @Override
+    public Loader<PreferencesEntity> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case 0:
+                return new MyAsyncTaskLoader(this);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<PreferencesEntity> loader, PreferencesEntity data) {
+        Toast.makeText(this, data.getHoge(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<PreferencesEntity> loader) {
+
     }
 }
