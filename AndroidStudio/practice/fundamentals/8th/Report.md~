@@ -7,17 +7,6 @@ Practice Report for 2/8
 
 1. サンプルプロジェクト (ServiceSample) に、サービスのライフサイクルをログに出力する実装が格納されています。このプロジェクトをビルドし、ログがどのように表示されるかをレポートしてください。
 
-Serviceについて
-StartボタンでonCreate onStartCommandの順で呼ばれる
-StopボタンでonDestroyが呼ばれる
-
-バインドされたServiceについて
-BindボタンでonCreate onServiceConnectedの順で呼ばれる
-UnbindボタンでonUnbind onDestroyの順で呼ばれる
-
-IntentServiceについて
-onCreate onStartCommand onHandleIntent onDestroyの順で呼ばれる
-
 ### Loader
 
 1. サンプルプロジェクト (LoaderSample) に、AsyncTaskLoader のライフサイクルをログに出力する実装が格納されています。このプロジェクトをビルドし、ログがどのように出力されているかをレポートしてください。
